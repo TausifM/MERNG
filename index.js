@@ -3,7 +3,11 @@ const typeDefs = require("./graphql/typeDefs");
 const mongoose = require("mongoose");
 // const { MONGODB } = require("./config");
 const resolvers = require("./resolvers");
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: ({ req }) => ({ req }),
+});
 mongoose
   .connect(
     "mongodb+srv://Tausif02:TausifShama@cluster0.3ahey.mongodb.net/SocialMediaApp?retryWrites=true&w=majority",
