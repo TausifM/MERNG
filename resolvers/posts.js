@@ -1,5 +1,5 @@
 const Post = require("../models/postModel.js");
-const { AuthenticationError } = require("apollo-server");
+const { UserInputError, AuthenticationError } = require("apollo-server");
 const checkAuth = require("../utils/check_auth.js");
 module.exports = {
   Query: {
@@ -34,6 +34,7 @@ module.exports = {
         creatAt: new Date().toISOString(),
       });
       const post = await newPost.save();
+      context.pubsub.publish("NEW_POST", { newPost: post });
       return post;
     },
     async deletePost(_, { postId }, context) {
@@ -50,7 +51,27 @@ module.exports = {
         throw new Error(err);
       }
     },
+    async likePost(_, { postId }, context) {
+      const { username } = checkAuth(context);
+      const post = await Post.findById(postId);
+      if (post) {
+        if (post.likes.find((like) => like.username === username)) {
+          post.likes = post.likes.filter((like) => like.username !== username);
+        } else {
+          post.likes.push({ username, creatAt: new Date().toISOString() });
+        }
+        await post.save();
+        return post;
+      } else throw new UserInputError("Post not found");
+    },
+  },
+  Subscription: {
+    newPost: {
+      subscribe: (_, __, { pubsub }) => pubsub.asyncIterator("NEW_POST"),
+    },
   },
 };
-//.sort({ createdAt: -1 }) //-1 for descending order and 1 for ascending order (default is -1)
-// context is the request object that contains the user data and the token data (if any) that was passed in the request header.
+//.sort({ createdAt: -1 }) //-1 for descending order and 1 for ascending order
+//(default is -1)
+// context is the request object that contains the user data and the token
+//data (if any) that was passed in the request header.
