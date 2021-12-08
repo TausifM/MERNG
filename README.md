@@ -14,7 +14,7 @@ likeCount(parent) => parent.likes.length,
 commentCount(parent) => parent.comments.length
 }
 
-## For Frontend using React JS
+# For Frontend using React JS
 
 1). Download [Dependancies] such as
 [
@@ -25,3 +25,11 @@ commentCount(parent) => parent.comments.length
 ]
 2). ApolloProvider.js file and Bind App.js file in Provider.
 3). Call File in index.js file
+
+## MenuBar using Semantic-UI
+
+1). npm i semantic-ui-react-hooks semantic-ui-css
+2). MenuBar.js file where class component made to functional by removing this. & adding useState hooks
+3). Specify the pathname widndow.location.pathname
+4). then const path = pathname === "/" ? home : pathname.substr(1);
+5). useState(path);
