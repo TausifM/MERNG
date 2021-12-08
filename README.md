@@ -1,4 +1,4 @@
-# To make Subscription in Apollo-Server
+## To make Subscription in Apollo-Server
 
 1). In TypeDef File make type Subscription
 2). Then in main index.js file import Subscription from graphql-subscription dependancies. and add pubsub in server apollo-server context
@@ -6,10 +6,22 @@
 4). Then Publish it by context.pubsub.publish in createPost after new Post added.
 5). Then add Subscription resolvers in index.js file of resolvers
 
-# To count like and comment
+## To count like and comment
 
 1). likeCount and commentCount in typeDefs file.
 2). then index.js file of resolvers add Post: {
 likeCount(parent) => parent.likes.length,
 commentCount(parent) => parent.comments.length
 }
+
+## For Frontend using React JS
+
+1). Download [Dependancies] such as
+[
+"apollo-cache-inmemory": "^1.6.6",
+"apollo-client": "^2.6.10",
+"apollo-link-http": "^1.5.17",
+"@apollo/react-hooks": "^4.0.0",
+]
+2). ApolloProvider.js file and Bind App.js file in Provider.
+3). Call File in index.js file
