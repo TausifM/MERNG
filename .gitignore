@@ -1,2 +1,6 @@
 node_modules
 config.js
+frontend/src/img/facebook.png
+.gitignore
+frontend/src/img/google.png
+frontend/src/img/github.png
