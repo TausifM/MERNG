@@ -9,8 +9,10 @@ function Home() {
   return (
     <div>
       <Grid columns={3}>
-        <Grid.Row>
+        <Grid.Row className="page-title">
           <h1>Recents Posts</h1>
+        </Grid.Row>
+        <Grid.Row>
           {loading ? (
             <h1>Loading</h1>
           ) : (

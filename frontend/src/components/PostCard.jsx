@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Card, Image, Button, Icon, Label } from "semantic-ui-react";
+import moment from "moment";
 function PostCard({
   post: { body, createdAt, username, id, likeCount, commentCount, likes },
 }) {
@@ -10,7 +11,7 @@ function PostCard({
     console.log("comment on post");
   }
   return (
-    <Card>
+    <Card fluid>
       <Card.Content>
         <Image
           floated="right"
@@ -19,7 +20,7 @@ function PostCard({
         />
         <Card.Header>{username}</Card.Header>
         <Card.Meta as={Link} to={`/posts/${id}`}>
-          CreateedAt
+          {moment(createdAt).fromNow(true)}
         </Card.Meta>
         <Card.Description>{body}</Card.Description>
       </Card.Content>

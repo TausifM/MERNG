@@ -33,3 +33,12 @@ commentCount(parent) => parent.comments.length
 3). Specify the pathname widndow.location.pathname
 4). then const path = pathname === "/" ? home : pathname.substr(1);
 5). useState(path);
+
+## Register Page with useMutation hooks from @apollo/react-hooks
+
+1). By using JSX and useState hooks values defined.
+2). const REGISTER_USER with mutation register.
+3). then useMutation hooks object AddUser added in onSubmit of form.
+4). In useMutation Hooks three things update, onError their is a setErrors inside err.graphQLErrors[0].extensions.exception.errors, and variables is a values
+5). onChange setValues({...values, [e.target.name]: e.target.value});
+6). UI from semantic ui.
